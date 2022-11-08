@@ -1,8 +1,8 @@
 :root {
-  --apr-color: 34, 40, 49;
-  --bsc-color: 221, 221, 221;
-  --crd-color: 48, 71, 94;
-  --dth-color: 240, 84, 84;
+  --dark-color: 34, 40, 49;
+  --grey-color: 221, 221, 221;
+  --navy-color: 48, 71, 94;
+  --red-color: 240, 84, 84;
 }
 
 * {
@@ -16,13 +16,13 @@ body {
   font-family: sans-serif;
   display: flex;
   flex-direction: column;
-  background-color: rgb(var(--apr-color));
-  color: rgb(var(--bsc-color));
+  background-color: rgb(var(--dark-color));
+  color: rgb(var(--grey-color));
 }
 
 header {
   width: 100%;
-  border-bottom: 2px solid rgb(var(--bsc-color));
+  border-bottom: 2px solid rgb(var(--grey-color));
 }
 
 a.skip-main {
@@ -38,8 +38,8 @@ a.skip-main {
 
 a.skip-main:focus,
 a.skip-main:active {
-  color: rgb(var(--bsc-color));
-  background-color: rgb(var(--crd-color));
+  color: rgb(var(--grey-color));
+  background-color: rgb(var(--navy-color));
   left: auto;
   top: auto;
   width: 30%;
@@ -48,7 +48,7 @@ a.skip-main:active {
   margin: 10px 35%;
   padding: 5px;
   border-radius: 10px;
-  border: 2px solid rgb(var(--bsc-color));
+  border: 2px solid rgb(var(--grey-color));
   text-align: center;
   font-size: 1.2em;
   z-index: 999;
@@ -59,13 +59,13 @@ a.skip-main:active {
 }
 
 #app-bar {
-  z-index: 1;
+  z-index: 100;
   width: 100%;
   display: flex;
   justify-content: space-between;
   position: fixed;
-  background-color: rgb(var(--apr-color));
-  border-bottom: 1px solid rgb(var(--bsc-color));
+  background-color: rgba(var(--dark-color), 1);
+  border-bottom: 1px solid rgba(var(--grey-color), 0.2);
 }
 
 .app-bar-section {
@@ -91,7 +91,7 @@ a.skip-main:active {
 }
 
 li>a {
-  color: rgb(var(--dth-color));
+  color: rgb(var(--red-color));
   text-decoration: none;
   text-transform: uppercase;
   display: inline-block;
@@ -109,7 +109,7 @@ li>a:after {
   height: 2px;
   bottom: -5px;
   left: 0;
-  background-color: rgb(var(--dth-color));
+  background-color: rgb(var(--red-color));
   transform-origin: bottom left;
   transition: transform 180ms ease-out;
 }
@@ -129,14 +129,24 @@ li {
   margin: 0;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.content>h2 {
+  text-align: center;
+  padding: 2em;
+}
+
 .hero {
-  background-color: rgb(var(--crd-color));
+  background-color: rgb(var(--navy-color));
   margin-top: 6.15em;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid rgb(var(--bsc-color));
+  border: 1px solid rgb(var(--grey-color));
   border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgb(var(--bsc-color));
+  box-shadow: 0 4px 8px 0 rgb(var(--grey-color));
 }
 
 .hero__img {
@@ -145,11 +155,6 @@ li {
   max-height: 500px;
   object-fit: cover;
   object-position: center;
-}
-
-.content>h2 {
-  text-align: center;
-  padding: 2em;
 }
 
 .posts {
@@ -162,22 +167,27 @@ li {
 }
 
 .post-item {
-  border: 2px solid rgb(var(--bsc-color), 0.4);
-  box-shadow: 0 15px 10px -10px rgb(var(--bsc-color), 0.5);
+  border: 2px solid rgb(var(--grey-color), 0.4);
+  box-shadow: 0 15px 10px -10px rgb(var(--grey-color), 0.5);
   width: 100%;
   border-radius: 10px;
-  background-color: rgba(var(--crd-color), 1);
+  background-color: rgba(var(--navy-color), 1);
   transition: all 150ms ease-in-out;
+}
+
+.post-item > a {
+  text-decoration: none;
+  color: rgb(var(--grey-color));
 }
 
 .post-item:hover,
 .post-item:focus {
-  box-shadow: 0 10px 10px 1px rgb(var(--bsc-color));
+  box-shadow: 0 10px 10px 1px rgb(var(--grey-color));
   transform: translateY(-10px);
 }
 
 .post-item:active {
-  box-shadow: 0 15px 10px -10px rgb(var(--bsc-color), 0.5);
+  box-shadow: 0 15px 10px -10px rgb(var(--grey-color), 0.5);
   transform: translateY(0);
 }
 
@@ -201,7 +211,7 @@ li {
 
 .post-city {
   position: absolute;
-  background-color: rgba(var(--crd-color), 0.9);
+  background-color: rgba(var(--navy-color), 0.9);
   top: 1.5em;
   padding: 1em 1.5em;
   border-radius: 0 10px 10px 0;
@@ -215,14 +225,14 @@ li {
 }
 
 .post-item__title {
-  color: rgb(var(--dth-color));
+  color: rgb(var(--red-color));
   font-size: 1.5em;
   margin-bottom: 1em;
 }
 
 footer {
-  background-color: rgb(var(--bsc-color));
-  color: rgb(var(--crd-color));
+  background-color: rgb(var(--grey-color));
+  color: rgb(var(--navy-color));
   margin-top: 3em;
   padding: 1em;
   width: 100%;
@@ -240,4 +250,49 @@ footer {
   margin: 0.5em auto;
   display: block;
   width: 44px;
+  cursor: pointer;
 }
+
+#restaurant {
+  top: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurant__hero {
+  max-height: 100vh;
+}
+
+.restaurant__poster {
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  max-height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  background-color: rgb(var(--dark-color));
+}
+
+/* nama resto harus tengah */
+
+.restaurant__title {
+  z-index: 2;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  background-color: rgba(var(--grey-color), 0.5);
+  color: rgb(var(--dark-color));
+  backdrop-filter: blur(10px);
+  text-align: center;
+  font-size: 5vw;
+  padding: 6.25vw 9.375vw;
+  border: 1px solid rgba(var(--grey-color), 0.2);
+  white-space: nowrap;
+}
+
+/* .restaurant__info {
+  z-index: 1;
+  position: absolute;
+
+} */
