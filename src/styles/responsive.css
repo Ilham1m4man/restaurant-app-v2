@@ -39,12 +39,19 @@
 
   .list-container>#nav__list {
     display: list-item;
-    background-color: rgb(var(--apr-color));
+    background-color: rgb(var(--dark-color));
     display: flex;
     flex-direction: column;
     position: relative;
   }
 }
+
+/* @media screen and (max-width: 1115px) {
+  .restaurant__title {
+    font-size: 3em;
+    padding: 60px 90px;
+  }
+} */
 
 @media screen and (max-width: 1200px) {
   .hero {
