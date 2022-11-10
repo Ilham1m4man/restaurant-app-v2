@@ -7,7 +7,7 @@ const RestaurantList = {
     <div class="content">
       <div class="hero">
         <div class="hero__inner">
-          <img src="./images/heros/hero-image_2.jpg" class="hero__img" alt="Picture of people eating together" tabindex="0">
+          <img src="./images/heros/hero-image_2.webp" class="hero__img" alt="Picture of people eating together" tabindex="0">
         </div>
       </div>
       <h2 class="content__heading">List of Restaurants</h2>
