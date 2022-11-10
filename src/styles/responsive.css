@@ -1,11 +1,14 @@
-@media screen and (max-width: 400px) {
-  .app-bar-section {
-    padding: 0.8em 0.5em;
-  }
-}
-
 @media screen and (max-width: 450px) {
-  .restaurant__info > h3 {
+  .app-bar-section {
+    padding: 0.25em 1em;
+  }
+
+  #header__title {
+    padding: 0;
+    font-size: 1.5em;
+  }
+
+  .restaurant__info>h3 {
     font-size: 1.5em;
     width: 100%;
     border-bottom: 3px solid rgb(var(--red-color));
@@ -20,6 +23,7 @@
   .info__section {
     grid-column-start: 1;
     grid-column-end: 4;
+    font-size: 1em;
   }
 
   .menus-container {
@@ -27,8 +31,32 @@
     gap: 1em;
   }
 
-  .restaurant__reviews > h3 {
+  .restaurant__reviews {
+    font-size: 1em;
+  }
+
+  .restaurant__reviews>h3 {
     font-size: 1.5em;
+  }
+
+  .no-favorite {
+    font-size: 1.5em;
+  }
+
+  footer {
+    font-size: 0.8em;
+  }
+
+  .hero__img {
+    min-height: 300px;
+  }
+
+  .restaurant__poster {
+    min-height: 300px;
+  }
+
+  .restaurant__title {
+    font-size: 2em;
   }
 }
 
@@ -102,11 +130,11 @@
 
 @media screen and (max-width: 1200px) {
   .hero {
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
     border: none;
     border-radius: 0;
     box-shadow: none;
+    background-color: transparent;
   }
 
   .hero__img {
