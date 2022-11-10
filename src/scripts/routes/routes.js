@@ -4,7 +4,7 @@ import Favorite from '../views/pages/favorite';
 
 const routes = {
   '/': ListRestaurant, // default page
-  /* '/ListRestaurant': ListRestaurant, */
+  '/ListRestaurant': ListRestaurant,
   '/detail/:id': Detail,
   '/favorite': Favorite,
 };
