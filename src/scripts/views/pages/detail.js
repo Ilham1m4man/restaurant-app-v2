@@ -17,6 +17,22 @@ const Detail = {
     const resto = restaurant.restaurant;
     const restaurantsContainer = document.querySelector('#restaurants');
     restaurantsContainer.innerHTML = createRestaurantDetailTemplate(resto);
+    const skipListener = document.querySelector('.skip-main');
+    /*
+        Kalau pakai Extension "Screen Reader" di Chrome nanti event focus-nya bakal stuck
+        di tombol "Skip to Main" jika user mengklik pakai tombol "ENTER",
+        sedangkan kalau mengklik tombol lainnya tidak ada masalah tersebut.
+        Tapi kalau gak pakai "Screen Reader", masalah ini gak akan terjadi.
+        Saya tidak tahu cara mengatasinya kak, kemungkinan ini bug dari Extension-nya kak
+    */
+    const namaResto = document.querySelector('#resto-name');
+
+    skipListener.href = ``;
+    skipListener.href = `/#/detail/${resto.id}`;
+    ['click', 'keydown'].map((event) => skipListener.addEventListener(event, () => {
+      // eslint-disable-next-line no-unused-expressions
+      namaResto.focus();
+    }));
 
     LikeButtonInitiator.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),
