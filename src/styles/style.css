@@ -93,7 +93,7 @@ li>a {
   text-transform: uppercase;
   display: inline-block;
   position: relative;
-  padding: 0.8em 2em;
+  padding: 1.1em 2em;
   white-space: nowrap;
   transition: all 100ms ease-in-out;
 }
