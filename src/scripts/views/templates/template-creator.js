@@ -6,52 +6,52 @@ import API_ENDPOINT from '../../globals/api-endpoint';
 
 const createRestaurantDetailTemplate = (restaurant) => `
   <div class="restaurant__hero">
-    <img class="restaurant__poster" src="${API_ENDPOINT.PICTURE_LARGE(restaurant.pictureId)}" alt="${restaurant.name}" />
-    <h2 class="restaurant__title">${restaurant.name}</h2>
+    <img class="restaurant__poster" src="${API_ENDPOINT.PICTURE_LARGE(restaurant.pictureId)}" alt="${restaurant.name} image" tabindex="0" />
+    <h2 class="restaurant__title" id="resto-name" tabindex="0">${restaurant.name}</h2>
   </div>
-  <div class="restaurant__info">
-    <h3>Information</h3>
-    <h4 id="rating" class="info__section">⭐ ${restaurant.rating}</h4>
+  <div class="restaurant__info" aria-label="information section" tabindex="0">
+    <h3 tabindex="0">Information</h3>
+    <h4 id="rating" class="info__section" tabindex="0" aria-label="rating from 1 to 5 star, ${restaurant.name} have ${restaurant.rating} star">⭐ ${restaurant.rating}</h4>
     <div id="address" class="info__section">
-      <h4>Address</h4>
-      <p>${restaurant.address}, ${restaurant.city}</p>
+      <h4 tabindex="0">Address</h4>
+      <p tabindex="0">${restaurant.address}, ${restaurant.city}</p>
     </div>
     <div id="categories" class="info__section">
-      <h4>Categories</h4>
+      <h4 tabindex="0">Categories</h4>
       <div class="categories-container">
-        ${restaurant.categories.map((category) => (`<span class="category">${category.name}</span>`)).join("")}
+        ${restaurant.categories.map((category) => (`<span class="category" tabindex="0">${category.name}</span>`)).join("")}
       </div>
     </div>
     <div id="description" class="info__section">
-      <h4>Description</h4>
-      <p>${restaurant.description}</p>
+      <h4 tabindex="0">Description</h4>
+      <p tabindex="0">${restaurant.description}</p>
     </div>
     <div id="menus" class="info__section">
-      <h4>Menu</h4>
+      <h4 tabindex="0">Menu</h4>
       <div class="menus-container">
         <div class="foods-container">
-          <h5>Foods</h5>
+          <h5 tabindex="0">Foods</h5>
           <ul>
-            ${restaurant.menus.foods.map((food) => (`<li>${food.name}</li>`)).join("")}
+            ${restaurant.menus.foods.map((food) => (`<li tabindex="0">${food.name}</li>`)).join("")}
           </ul>
         </div>
         <div class="drinks-container">
-          <h5>Drinks</h5>
+          <h5 tabindex="0">Drinks</h5>
           <ul>
-            ${restaurant.menus.drinks.map((drink) => (`<li>${drink.name}</li>`)).join("")}
+            ${restaurant.menus.drinks.map((drink) => (`<li tabindex="0">${drink.name}</li>`)).join("")}
           </ul>
         </div>
       </div>
     </div>
   </div>
-  <div class="restaurant__reviews">
-    <h3>Let's see what others think about ${restaurant.name}</h3>
+  <div class="restaurant__reviews" aria-label="reviews section" tabindex="0">
+    <h3 tabindex="0">Let's see what others think about ${restaurant.name}</h3>
     <ul class="reviews-container">
       ${restaurant.customerReviews.map((reviewer) => (
         `<li>
-          <div class="review-date"><p>${reviewer.date}</p></div>
-          <div class="review-name"><h4>${reviewer.name}</h4></div>
-          <div class="review-reviewer"><p>${reviewer.review}</p></div>
+          <div class="review-date"><p tabindex="0" aria-label="reviews date, ${reviewer.date}">${reviewer.date}</p></div>
+          <div class="review-name"><h4 tabindex="0" aria-label="reviewers name, ${reviewer.name}">${reviewer.name}</h4></div>
+          <div class="review-reviewer"><p tabindex="0" aria-label="reviews, ${reviewer.review}">${reviewer.review}</p></div>
         </li>`
         )).join("")}
     </ul>
@@ -66,7 +66,7 @@ const createRestaurantItemTemplate = (resto) => `
       <img tabindex="0" class="post-item__thumbnail" src="${API_ENDPOINT.PICTURE_MEDIUM(resto.pictureId)}" alt="${resto.name} image">
     </div>
     <div class="post-item__content">
-      <p class="post-item__rating" tabindex="0">⭐ ${resto.rating}</p>
+      <p class="post-item__rating" tabindex="0" aria-label="rating from 1 to 5 star, ${resto.name} have ${resto.rating} star">⭐ ${resto.rating}</p>
       <h3 class="post-item__title" tabindex="0">${resto.name}</h3>
       <p class="post-item__description" tabindex="0">${resto.description.length < 200 ? resto.description : resto.description.substring(0, 200)}...</p>
     </div>
