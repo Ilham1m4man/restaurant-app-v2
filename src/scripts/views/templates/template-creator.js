@@ -75,15 +75,33 @@ const createRestaurantItemTemplate = (resto) => `
 `;
 
 const createLikeButtonTemplate = () => `
-  <button aria-label="like this restaurant" id="likeButton" class="like">
+  <button aria-label="like this restaurant" id="likeButton" class="button">
      <i class="fa fa-heart-o" aria-hidden="true"></i>
   </button>
 `;
 
 const createLikedButtonTemplate = () => `
-  <button aria-label="unlike this restaurant" id="likeButton" class="like">
+  <button aria-label="unlike this restaurant" id="likeButton" class="button">
     <i class="fa fa-heart" aria-hidden="true"></i>
   </button>
+`;
+
+const createAddReviewButtonTemplate = () => `
+  <button aria-label="add review to this restaurant" id="addReviewButton" class="button">
+    <i class="fa fa-comment-o" aria-hidden="true"></i>
+  </button>
+`;
+
+const createReviewFormTemplate = () => `
+  <div id="review-form">
+    <h3>Add Review</h3>
+    <form action="" method="post">
+      <input type="text" placeholder="Name" id="input-name">
+      <textarea type="text" placeholder="What's your thought about this restaurant?" id="input-review">
+      <button aria-label="cancel review" id="cancelReviewButton">Cancel</button>
+      <button aria-label="post review" id="postReviewButton">Post</button>
+    </form>
+  </div>
 `;
 
 export {
@@ -91,4 +109,6 @@ export {
   createRestaurantDetailTemplate,
   createLikeButtonTemplate,
   createLikedButtonTemplate,
+  createAddReviewButtonTemplate,
+  createReviewFormTemplate,
 };
