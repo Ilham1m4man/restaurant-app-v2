@@ -1,6 +1,6 @@
 import UrlParser from "../../routes/url-parser";
 import RestaurantAppDbSource from "../../data/restaurantappdb-source";
-import { createRestaurantDetailTemplate } from "../templates/template-creator";
+import { createRestaurantDetailTemplate, createAddReviewButtonTemplate } from "../templates/template-creator";
 import LikeButtonInitiator from '../../utils/like-button-initiator';
 
 const Detail = {
@@ -8,6 +8,7 @@ const Detail = {
     return `
       <div id="restaurants" class="restaurant"></div>
       <div id="likeButtonContainer"></div>
+      <div id="addReviewButtonContainer"></div>
     `;
   },
 
@@ -18,6 +19,8 @@ const Detail = {
     const restaurantsContainer = document.querySelector('#restaurants');
     restaurantsContainer.innerHTML = createRestaurantDetailTemplate(resto);
     const skipListener = document.querySelector('.skip-main');
+    const addReviewButtonContainer = document.querySelector('#addReviewButtonContainer');
+    addReviewButtonContainer.innerHTML = createAddReviewButtonTemplate();
     /*
         Kalau pakai Extension "Screen Reader" di Chrome nanti event focus-nya bakal stuck
         di tombol "Skip to Main" jika user mengklik pakai tombol "ENTER",
