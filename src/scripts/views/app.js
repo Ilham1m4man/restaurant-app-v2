@@ -22,8 +22,16 @@ class App {
   async renderPage() {
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url];
-    this._content.innerHTML = await page.render();
-    await page.afterRender();
+    const homePage = routes['/'];
+
+    try {
+      this._content.innerHTML = await page.render();
+      await page.afterRender();
+    } catch (error) {
+      this._content.alert(error);
+      this._content.innerHTML = await homePage.render();
+      await homePage.afterRender();
+    }
   }
 }
 
