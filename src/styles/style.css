@@ -441,7 +441,7 @@ footer {
   font-size: small;
 }
 
-.like {
+.button {
   z-index: 100;
   width: 55px;
   height: 55px;
@@ -459,6 +459,11 @@ footer {
   font-size: 18px;
   color: rgb(var(--red-color));
   cursor: pointer;
+}
+
+#addReviewButton {
+  right: 85px;
+  color: rgb(var(--grey-color));
 }
 
 .restaurants-favorite {
