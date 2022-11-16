@@ -449,13 +449,13 @@ footer {
   align-items: center;
   justify-content: center;
   background-color: rgb(var(--navy-color));
-  
+
   position: fixed;
   bottom: 16px;
   right: 16px;
   border-radius: 50%;
-  border: 0;
-  
+  border: 1px solid rgb(var(--grey-color));
+
   font-size: 18px;
   color: rgb(var(--red-color));
   cursor: pointer;
@@ -476,4 +476,70 @@ footer {
 .no-favorite {
   text-align: center;
   font-size: 2em;
+}
+
+#review-form {
+  position: fixed;
+  z-index: 10000;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#form-input > h3 {
+  font-size: 2em;
+  margin: 10px;
+}
+
+#review-form>form {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background-color: rgb(var(--navy-color));
+  margin: 10% auto;
+  padding: 20px;
+  width: 50%;
+}
+
+#input-name {
+  padding: 20px;
+  font-size: 1.25em;
+  color: rgb(var(--grey-color));
+  border-radius: 10px;
+  background-color: rgb(var(--dark-color));
+}
+
+#input-name:active,
+#input-name:focus {
+  border: 1px solid rgb(var(--grey-color));
+}
+
+#input-review {
+  resize: none;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 1.5em;
+  min-height: 150px;
+  background-color: rgb(var(--dark-color));
+  color: rgb(var(--grey-color));
+}
+
+.form-button {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+}
+
+.form-button button {
+  padding: 5px 20px;
+  font-size: 1.25em;
+  border-radius: 10px;
+}
+
+
+.appear {
+  display: block;
 }
