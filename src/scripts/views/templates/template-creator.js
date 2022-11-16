@@ -94,13 +94,21 @@ const createAddReviewButtonTemplate = () => `
 
 const createReviewFormTemplate = () => `
   <div id="review-form">
-    <h3>Add Review</h3>
-    <form action="" method="post">
+    <form id="form-input">
+      <h3>Add Review</h3>
       <input type="text" placeholder="Name" id="input-name">
-      <textarea type="text" placeholder="What's your thought about this restaurant?" id="input-review">
-      <button aria-label="cancel review" id="cancelReviewButton">Cancel</button>
-      <button aria-label="post review" id="postReviewButton">Post</button>
-    </form>
+      <textarea type="text" placeholder="What's your thought about this restaurant?" id="input-review"></textarea>
+      <div class="form-button">
+        <button type="button" aria-label="cancel review" id="cancelReviewButton">Cancel</button>
+        <button type="submit" aria-label="post review" id="postReviewButton">Post</button>
+      </div>
+      </form>
+  </div>
+`;
+
+const createOfflineScreenTemplate = () => `
+  <div id="offline-screen">
+    <h2>Internet connection required!</h2>
   </div>
 `;
 
@@ -111,4 +119,5 @@ export {
   createLikedButtonTemplate,
   createAddReviewButtonTemplate,
   createReviewFormTemplate,
+  createOfflineScreenTemplate,
 };
