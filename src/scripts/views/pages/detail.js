@@ -1,12 +1,14 @@
 import UrlParser from "../../routes/url-parser";
 import RestaurantAppDbSource from "../../data/restaurantappdb-source";
-import { createRestaurantDetailTemplate, createAddReviewButtonTemplate } from "../templates/template-creator";
+import { createRestaurantDetailTemplate } from "../templates/template-creator";
 import LikeButtonInitiator from '../../utils/like-button-initiator';
+import AddReviewButtonInitiator from "../../utils/addReview-button-initiator";
 
 const Detail = {
   async render() {
     return `
       <div id="restaurants" class="restaurant"></div>
+      <div id="reviewFormContainer" class="review-form-container"></div>
       <div id="likeButtonContainer"></div>
       <div id="addReviewButtonContainer"></div>
     `;
@@ -16,11 +18,11 @@ const Detail = {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const restaurant = await RestaurantAppDbSource.detailRestaurant(url.id);
     const resto = restaurant.restaurant;
+
     const restaurantsContainer = document.querySelector('#restaurants');
+    // eslint-disable-next-line max-len
     restaurantsContainer.innerHTML = createRestaurantDetailTemplate(resto);
     const skipListener = document.querySelector('.skip-main');
-    const addReviewButtonContainer = document.querySelector('#addReviewButtonContainer');
-    addReviewButtonContainer.innerHTML = createAddReviewButtonTemplate();
     /*
         Kalau pakai Extension "Screen Reader" di Chrome nanti event focus-nya bakal stuck
         di tombol "Skip to Main" jika user mengklik pakai tombol "ENTER",
@@ -36,6 +38,14 @@ const Detail = {
       // eslint-disable-next-line no-unused-expressions
       namaResto.focus();
     }));
+
+    AddReviewButtonInitiator.init({
+      addReviewButtonContainer: document.querySelector('#addReviewButtonContainer'),
+      addReviewFormContainer: document.querySelector('#reviewFormContainer'),
+      restaurant: {
+        id: resto.id,
+      },
+    });
 
     LikeButtonInitiator.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),
