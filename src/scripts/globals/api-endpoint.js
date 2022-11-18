@@ -6,6 +6,7 @@ const API_ENDPOINT = {
   PICTURE_MEDIUM: (pictureId) => `${CONFIG.BASE_URL}images/medium/${pictureId}`,
   PICTURE_LARGE: (pictureId) => `${CONFIG.BASE_URL}images/large/${pictureId}`,
   ADD_REVIEW: `${CONFIG.BASE_URL}review`,
+  SEARCH: (query) => `${CONFIG.BASE_URL}/search?q=${query}`,
 };
 
 export default API_ENDPOINT;
