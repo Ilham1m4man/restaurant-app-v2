@@ -10,9 +10,12 @@ const RestaurantList = {
           <img src="./images/heros/hero-image_2.webp" class="hero__img" alt="Picture of people eating together" tabindex="0">
         </div>
       </div>
+      <div class="search-bar">
+            <input type="text" placeholder="Search"/>
+      </div>
       <h2 class="content__heading" tabindex="0">List of Restaurants</h2>
-      <div id="restaurants" class="restaurants posts">
-      
+      <div id="restaurants" class="posts">
+        <!-- class restaurants telah dihapus -->
       </div>
     </div>
     `;
@@ -22,6 +25,10 @@ const RestaurantList = {
     const restaurants = await RestaurantAppDbSource.listOfRestaurant();
     const restaurantsContainer = document.querySelector('#restaurants');
     const skipListener = document.querySelector('.skip-main');
+    /* const searchBar = document.querySelector('.search-bar input');
+    searchBar.addEventListener('keydown', () => {
+      console.log(searchBar.value);
+    }); */
     /*
         Kalau pakai Extension "Screen Reader" di Chrome nanti event focus-nya bakal stuck
         di tombol "Skip to Main" jika user mengklik pakai tombol "ENTER",
@@ -38,9 +45,11 @@ const RestaurantList = {
     }));
 
     // eslint-disable-next-line array-callback-return
-    restaurants.map((restaurant) => {
+    restaurants.forEach((restaurant) => {
       restaurantsContainer.innerHTML += createRestaurantItemTemplate(restaurant);
     });
+    const loaderContainer = document.querySelector('#loader');
+    loaderContainer.style.display = 'none';
   },
 };
 
