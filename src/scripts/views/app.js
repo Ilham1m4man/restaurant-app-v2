@@ -1,6 +1,7 @@
 import DrawerInitiator from '../utils/drawer-initiator';
 import UrlParser from '../routes/url-parser';
 import routes from '../routes/routes';
+import { createOfflineScreenTemplate } from './templates/template-creator';
 
 class App {
   constructor({ button, drawer, content }) {
@@ -23,14 +24,18 @@ class App {
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url];
     const homePage = routes['/'];
+    const loaderContainer = document.querySelector('#loader');
+    loaderContainer.style.display = 'flex';
 
     try {
       this._content.innerHTML = await page.render();
       await page.afterRender();
     } catch (error) {
-      this._content.alert(error);
-      this._content.innerHTML = await homePage.render();
-      await homePage.afterRender();
+      this._content.innerHTML = createOfflineScreenTemplate();
+      setTimeout(async () => {
+        this._content.innerHTML = await homePage.render();
+        await homePage.afterRender();
+      }, 3000);
     }
   }
 }
