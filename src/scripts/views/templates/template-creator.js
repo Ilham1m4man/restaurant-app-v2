@@ -59,28 +59,28 @@ const createRestaurantDetailTemplate = (restaurant) => `
 `;
 
 const createRestaurantItemTemplate = (resto) => `
-  <article class="post-item">
+  <article class="restaurant-item">
   <a href="/#/detail/${resto.id}">
-    <div class="post-item__thumbnail__container">
+    <div class="restaurant-item__thumbnail__container">
       <p class="post-city" tabindex="0">${resto.city}</p>
-      <img tabindex="0" class="post-item__thumbnail" src="${API_ENDPOINT.PICTURE_MEDIUM(resto.pictureId)}" alt="${resto.name} image">
+      <img tabindex="0" class="restaurant-item__thumbnail" src="${API_ENDPOINT.PICTURE_MEDIUM(resto.pictureId)}" alt="${resto.nam || '-'} image">
     </div>
-    <div class="post-item__content">
-      <p class="post-item__rating" tabindex="0" aria-label="rating from 1 to 5 star, ${resto.name} have ${resto.rating} star">⭐ ${resto.rating}</p>
-      <h3 class="post-item__title" tabindex="0">${resto.name}</h3>
-      <p class="post-item__description" tabindex="0">${resto.description.length < 200 ? resto.description : resto.description.substring(0, 200)}...</p>
+    <div class="restaurant-item__content">
+      <p class="restaurant-item__rating" tabindex="0" aria-label="rating from 1 to 5 star, ${resto.name || '-'} have ${resto.rating} star">⭐ ${resto.rating}</p>
+      <h3 class="restaurant__name" tabindex="0">${resto.name || '-'}</h3>
+      <p class="restaurant-item__description" tabindex="0">${resto.description.length < 200 ? resto.description : resto.description.substring(0, 200)}...</p>
     </div>
     </a>
   </article>
 `;
 
-const createLikeButtonTemplate = () => `
+const createLikeRestaurantButtonTemplate = () => `
   <button aria-label="like this restaurant" id="likeButton" class="button">
      <i class="fa fa-heart-o" aria-hidden="true"></i>
   </button>
 `;
 
-const createLikedButtonTemplate = () => `
+const createUnlikeRestaurantButtonTemplate = () => `
   <button aria-label="unlike this restaurant" id="likeButton" class="button">
     <i class="fa fa-heart" aria-hidden="true"></i>
   </button>
@@ -93,11 +93,11 @@ const createAddReviewButtonTemplate = () => `
 `;
 
 const createReviewFormTemplate = () => `
-  <div id="review-form">
+  <div id="review-form" class="modal-style">
     <form id="form-input">
       <h3>Add Review</h3>
-      <input type="text" placeholder="Name" id="input-name">
-      <textarea type="text" placeholder="What's your thought about this restaurant?" id="input-review"></textarea>
+      <input type="text" aria-label="write your name here" placeholder="Name" id="input-name">
+      <textarea type="text" aria-label="write your review here" placeholder="What's your thought about this restaurant?" id="input-review"></textarea>
       <div class="form-button">
         <button type="button" aria-label="cancel review" id="cancelReviewButton">Cancel</button>
         <button type="submit" aria-label="post review" id="postReviewButton">Post</button>
@@ -107,7 +107,7 @@ const createReviewFormTemplate = () => `
 `;
 
 const createOfflineScreenTemplate = () => `
-  <div id="offline-screen">
+  <div id="offline-screen" class="modal-style" tabindex="0">
     <h2>Internet connection required!</h2>
   </div>
 `;
@@ -115,8 +115,8 @@ const createOfflineScreenTemplate = () => `
 export {
   createRestaurantItemTemplate,
   createRestaurantDetailTemplate,
-  createLikeButtonTemplate,
-  createLikedButtonTemplate,
+  createLikeRestaurantButtonTemplate,
+  createUnlikeRestaurantButtonTemplate,
   createAddReviewButtonTemplate,
   createReviewFormTemplate,
   createOfflineScreenTemplate,
