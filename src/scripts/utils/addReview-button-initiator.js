@@ -1,5 +1,5 @@
 import {
-  createAddReviewButtonTemplate, createReviewFormTemplate, /* , createOfflineScreenTemplate */
+  createAddReviewButtonTemplate, createReviewFormTemplate, createOfflineScreenTemplate,
 } from '../views/templates/template-creator';
 import RestaurantAppDbSource from '../data/restaurantappdb-source';
 
@@ -18,12 +18,16 @@ const AddReviewButtonInitiator = {
 
     const addReviewButton = document.querySelector('#addReviewButton');
     ['click', 'keydown'].map((event) => addReviewButton.addEventListener(event, () => {
-      /* if (!navigator.onLine) {
-        createOfflineScreenTemplate();
+      if (!navigator.onLine) {
+        this._addReviewFormContainer.innerHTML = createOfflineScreenTemplate();
+        const offlineScreenBody = document.querySelector("#offline-screen");
+        offlineScreenBody.addEventListener(event, () => {
+          this._addReviewFormContainer.innerHTML = ``;
+        });
       } else {
-      } */
-      this._addReviewFormContainer.innerHTML = createReviewFormTemplate();
-      this._afterRenderAddReview(id);
+        this._addReviewFormContainer.innerHTML = createReviewFormTemplate();
+        this._afterRenderAddReview(id);
+      }
     }));
   },
 
@@ -36,7 +40,8 @@ const AddReviewButtonInitiator = {
     }));
 
     const formContainer = document.querySelector('#form-input');
-    formContainer.addEventListener('submit', async () => {
+    formContainer.addEventListener('submit', async (e) => {
+      e.preventDefault();
       const nameInput = document.querySelector('#input-name').value;
       const reviewInput = document.querySelector('#input-review').value;
       const dataReview = {
