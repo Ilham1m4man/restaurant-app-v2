@@ -1,4 +1,4 @@
-const sum = (a, b) => a + b;
+/* const sum = (a, b) => a + b;
 
 // eslint-disable-next-line no-undef
 describe('A Sample Test for Sum', () => {
@@ -8,3 +8,4 @@ describe('A Sample Test for Sum', () => {
       .toEqual(5);
   });
 });
+ */
