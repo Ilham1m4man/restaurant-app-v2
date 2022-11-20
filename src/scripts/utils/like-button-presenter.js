@@ -28,20 +28,20 @@ const LikeButtonPresenter = {
     this._likeButtonContainer.innerHTML = createLikeRestaurantButtonTemplate();
 
     const likeButton = document.querySelector('#likeButton');
-    likeButton.addEventListener('click', async () => {
+    ['click', 'keydown'].map((event) => likeButton.addEventListener(event, async () => {
       await this._favoriteRestaurants.putRestaurant(this._restaurant);
       this._renderButton();
-    });
+    }));
   },
 
   _renderLiked() {
     this._likeButtonContainer.innerHTML = createUnlikeRestaurantButtonTemplate();
 
     const likeButton = document.querySelector('#likeButton');
-    likeButton.addEventListener('click', async () => {
+    ['click', 'keydown'].map((event) => likeButton.addEventListener(event, async () => {
       await this._favoriteRestaurants.deleteRestaurant(this._restaurant.id);
       this._renderButton();
-    });
+    }));
   },
 };
 
