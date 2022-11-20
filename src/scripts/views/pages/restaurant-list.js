@@ -1,5 +1,6 @@
 import RestaurantAppDbSource from '../../data/restaurantappdb-source';
 import { createRestaurantItemTemplate } from '../templates/template-creator';
+import loadIndicatorRemover from '../../utils/load-indicator-remover';
 
 const RestaurantList = {
   async render() {
@@ -7,15 +8,21 @@ const RestaurantList = {
     <div class="content">
       <div class="hero">
         <div class="hero__inner">
-          <img src="./images/heros/hero-image_2.webp" class="hero__img" alt="Picture of people eating together" tabindex="0">
+          <picture>
+            <source media="(max-width: 600px)" srcset="./images/heros/hero-image_2-small.webp" type="image/webp">
+            <source media="(max-width: 600px)" srcset="./images/heros/hero-image_2-small.jpeg" type="image/jpeg">
+            <source srcset="./images/heros/hero-image_2.webp" type="image/webp">
+            <source srcset="./images/heros/hero-image_2.jpg" type="image/jpeg">
+              <img src="./images/heros/hero-image_2.jpg"
+                  class="hero__img"
+                  alt="Picture of people eating together"
+                  tabindex="0"
+                  type="image/jpeg">
+          </picture>
         </div>
-      </div>
-      <div class="search-bar">
-            <input type="text" placeholder="Search"/>
       </div>
       <h2 class="content__heading" tabindex="0">List of Restaurants</h2>
       <div id="restaurants" class="posts">
-        <!-- class restaurants telah dihapus -->
       </div>
     </div>
     `;
@@ -25,10 +32,6 @@ const RestaurantList = {
     const restaurants = await RestaurantAppDbSource.listOfRestaurant();
     const restaurantsContainer = document.querySelector('#restaurants');
     const skipListener = document.querySelector('.skip-main');
-    /* const searchBar = document.querySelector('.search-bar input');
-    searchBar.addEventListener('keydown', () => {
-      console.log(searchBar.value);
-    }); */
     /*
         Kalau pakai Extension "Screen Reader" di Chrome nanti event focus-nya bakal stuck
         di tombol "Skip to Main" jika user mengklik pakai tombol "ENTER",
@@ -48,8 +51,7 @@ const RestaurantList = {
     restaurants.forEach((restaurant) => {
       restaurantsContainer.innerHTML += createRestaurantItemTemplate(restaurant);
     });
-    const loaderContainer = document.querySelector('#loader');
-    loaderContainer.style.display = 'none';
+    loadIndicatorRemover();
   },
 };
 
