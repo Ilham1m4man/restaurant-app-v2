@@ -1,13 +1,18 @@
 /* eslint-disable no-unexpected-multiline */
 /* eslint-disable template-tag-spacing */
 /* eslint-disable indent */
-/* import CONFIG from '../../globals/config'; */
 import API_ENDPOINT from '../../globals/api-endpoint';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 const createRestaurantDetailTemplate = (restaurant) => `
   <div class="restaurant__hero">
-    <img class="restaurant__poster" src="${API_ENDPOINT.PICTURE_LARGE(restaurant.pictureId)}" alt="${restaurant.name} image" tabindex="0" />
-    <h2 class="restaurant__title" id="resto-name" tabindex="0">${restaurant.name}</h2>
+    <picture>
+      <source media="(max-width: 450px)" srcset="${API_ENDPOINT.PICTURE_SMALL(restaurant.pictureId)}" type="image/jpeg">
+      <source media="(max-width: 770px)" srcset="${API_ENDPOINT.PICTURE_MEDIUM(restaurant.pictureId)}" type="image/jpeg">
+      <img class="restaurant__poster" src="${API_ENDPOINT.PICTURE_LARGE(restaurant.pictureId)}" alt="${restaurant.name} image" tabindex="0" type="image/jpeg" />
+    </picture>
+    <h2 class="restaurant__name-title" id="resto-name" tabindex="0">${restaurant.name}</h2>
   </div>
   <div class="restaurant__info" aria-label="information section" tabindex="0">
     <h3 tabindex="0">Information</h3>
@@ -59,11 +64,11 @@ const createRestaurantDetailTemplate = (restaurant) => `
 `;
 
 const createRestaurantItemTemplate = (resto) => `
-  <article class="restaurant-item">
+  <div class="restaurant-item">
   <a href="/#/detail/${resto.id}">
     <div class="restaurant-item__thumbnail__container">
       <p class="post-city" tabindex="0">${resto.city}</p>
-      <img tabindex="0" class="restaurant-item__thumbnail" src="${API_ENDPOINT.PICTURE_MEDIUM(resto.pictureId)}" alt="${resto.nam || '-'} image">
+      <img tabindex="0" class="restaurant-item__thumbnail lazyload" data-src="${API_ENDPOINT.PICTURE_MEDIUM(resto.pictureId)}" alt="${resto.name || '-'} image">
     </div>
     <div class="restaurant-item__content">
       <p class="restaurant-item__rating" tabindex="0" aria-label="rating from 1 to 5 star, ${resto.name || '-'} have ${resto.rating} star">⭐ ${resto.rating}</p>
@@ -71,7 +76,7 @@ const createRestaurantItemTemplate = (resto) => `
       <p class="restaurant-item__description" tabindex="0">${resto.description.length < 200 ? resto.description : resto.description.substring(0, 200)}...</p>
     </div>
     </a>
-  </article>
+  </div>
 `;
 
 const createLikeRestaurantButtonTemplate = () => `
