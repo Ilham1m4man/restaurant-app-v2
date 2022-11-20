@@ -4,6 +4,7 @@ import { createRestaurantDetailTemplate } from "../templates/template-creator";
 import LikeButtonPresenter from '../../utils/like-button-presenter';
 import AddReviewButtonInitiator from "../../utils/addReview-button-initiator";
 import FavoriteRestaurantIdb from "../../data/favorite-restaurant-idb";
+import loadIndicatorRemover from "../../utils/load-indicator-remover";
 
 const Detail = {
   async render() {
@@ -61,8 +62,7 @@ const Detail = {
       },
     });
 
-    const loaderContainer = document.querySelector('#loader');
-    loaderContainer.style.display = 'none';
+    loadIndicatorRemover();
   },
 };
 
