@@ -21,11 +21,11 @@ class App {
   }
 
   async renderPage() {
+    const loaderContainer = document.querySelector('#loader');
+    loaderContainer.style.display = 'flex';
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url];
     const homePage = routes['/'];
-    const loaderContainer = document.querySelector('#loader');
-    loaderContainer.style.display = 'flex';
 
     try {
       this._content.innerHTML = await page.render();
