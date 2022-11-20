@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
+const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -27,6 +28,29 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      maxSize: 70000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      automaticNameDelimiter: '~',
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       favicon: 'src/public/favicon.ico',
@@ -41,22 +65,17 @@ module.exports = {
         },
       ],
     }),
-    new WebpackPwaManifest({
-      id: "restaurant-app-2.0",
-      start_url: "./index.html",
-      name: "Restaurant App 2.0",
-      short_name: "Restaurant App",
-      description: "Free App For Finding The Best Restaurant",
-      display: "standalone",
-      background_color: "#222831",
-      theme_color: "#DDDDDD",
-      icons: [
+    new ImageminWebpWebpackPlugin({
+      config: [
         {
-          src: path.resolve('src/public/icons/icon-512x512.png'),
-          sizes: [72, 96, 128, 144, 152, 192, 384, 512],
-          purpose: 'maskable',
+          test: /\.(jpe?g|png)/,
+          options: {
+            quality: 50,
+          },
         },
       ],
+      overrideExtension: true,
     }),
+    new BundleAnalyzerPlugin(),
   ],
 };
